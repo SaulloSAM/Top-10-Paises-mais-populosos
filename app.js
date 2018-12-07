@@ -1,8 +1,14 @@
 const app = new Vue({
     el: "#app",
     data: {
-        typeOrder: "DESC",
-        populacao: { }
+        populacao: { },
+
+        mostrarPosicao: true,
+        mostrarPais: true,
+        mostrarPopulacao: true,
+        mostrarData: true,
+
+        typeOrder: "DESC"
     },
     methods: {
         init() {
@@ -30,11 +36,19 @@ const app = new Vue({
             else if (ordem == "DESC") { ordem = "ASC" }
             else { ordem = "ASC" }
             this.typeOrder = ordem;
+        },
+        mostrarOcultar (e) {
+            id = e.srcElement.id;
+            elemento = document.getElementById(id).checked;            
+            if (id == "posicao") { this.mostrarPosicao = !this.mostrarPosicao }
+            if (id == "pais") { this.mostrarPais = !this.mostrarPais }
+            if (id == "populacao") { this.mostrarPopulacao = !this.mostrarPopulacao }
+            if (id == "data") { this.mostrarData = !this.mostrarData }
         }
     }
 });
 
-// 
+// Iniciar o OBJ app.
 app.init();
 
 // Functions

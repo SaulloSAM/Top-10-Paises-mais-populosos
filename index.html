@@ -17,21 +17,45 @@
         Top 10 Países com maior número de população
     </h1>
 
-    <main id="app" class="container bg-light my-5 p-2">
-        <div class="row">
-            <span @click="ordenarPosicao"       class="col-2 on-cursor d-block icon">Posição</span>
-            <span @click="ordenarPais"          class="col-5 on-cursor d-block icon">País (ou território dependente)</span>
-            <span @click="ordenarPopulacao"     class="col-3 on-cursor d-block icon">População</span>
-            <span @click="ordenarData"          class="col-2 on-cursor d-block icon">Data</span>
+    <main id="app" class="container  my-5 p-2 row mx-auto">
+        <div class="col-md-2 mb-3 text-light">
+            <div class="form-check">
+                <input checked class="form-check-input" type="checkbox" id="posicao" @click="mostrarOcultar">
+                <label class="form-check-label" for="posicao"> Posição </label>
+            </div>
+
+            <div class="form-check">
+                <input checked class="form-check-input" type="checkbox" id="pais" @click="mostrarOcultar">
+                <label class="form-check-label" for="pais"> País </label>
+            </div>
+
+            <div class="form-check">
+                <input checked class="form-check-input" type="checkbox" id="populacao" @click="mostrarOcultar">
+                <label class="form-check-label" for="populacao"> População </label>
+            </div>
+
+            <div class="form-check">
+                <input checked class="form-check-input" type="checkbox" id="data" @click="mostrarOcultar">
+                <label class="form-check-label" for="data"> Data </label>
+            </div>
         </div>
 
-        <hr>
-
-        <div v-for="p in populacao" class="row oddColor m-default">
-            <span class="col-2">{{ p.posicao }}</span>
-            <span class="col-5">{{ p.pais }}</span>
-            <span class="col-3">{{ p.populacao }}</span>
-            <span class="col-2">{{ p.data }}</span>
+        <div class="col-md-10 bg-light">
+            <div class="row pt-2">
+                <span v-if="mostrarPosicao"     @click="ordenarPosicao"       class="col-2 on-cursor">Posição</span>
+                <span v-if="mostrarPais"        @click="ordenarPais"          class="col-5 on-cursor">País (ou território dependente)</span>
+                <span v-if="mostrarPopulacao"   @click="ordenarPopulacao"     class="col-3 on-cursor">População</span>
+                <span v-if="mostrarData"        @click="ordenarData"          class="col-2 on-cursor">Data</span>
+            </div>
+    
+            <hr>
+    
+            <div v-for="p in populacao"         class="row oddColor m-default">
+                <span v-if="mostrarPosicao"     class="col-2">{{ p.posicao }}</span>
+                <span v-if="mostrarPais"        class="col-5">{{ p.pais }}</span>
+                <span v-if="mostrarPopulacao"   class="col-3">{{ p.populacao }}</span>
+                <span v-if="mostrarData"        class="col-2">{{ p.data }}</span>
+            </div>
         </div>
     </main>
 
