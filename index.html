@@ -18,6 +18,7 @@
     </h1>
 
     <main id="app" class="container  my-5 p-2 row mx-auto">
+        <!-- Campo para selecionar o que deseja ver na Listage -->
         <div class="col-md-2 mb-3 text-light">
             <div class="form-check">
                 <input checked class="form-check-input" type="checkbox" id="posicao" @click="mostrarOcultar">
@@ -40,28 +41,32 @@
             </div>
         </div>
 
+        <!-- Listagem dos países -->
         <div class="col-md-10 bg-light">
-            <div class="row pt-2">
-                <span v-if="mostrarPosicao"     @click="ordenarPosicao"       class="col-2 on-cursor">Posição</span>
-                <span v-if="mostrarPais"        @click="ordenarPais"          class="col-5 on-cursor">País (ou território dependente)</span>
-                <span v-if="mostrarPopulacao"   @click="ordenarPopulacao"     class="col-3 on-cursor">População</span>
-                <span v-if="mostrarData"        @click="ordenarData"          class="col-2 on-cursor">Data</span>
-            </div>
-    
-            <hr>
-    
-            <div v-for="p in populacao"         class="row oddColor m-default">
-                <span v-if="mostrarPosicao"     class="col-2">{{ p.posicao }}</span>
-                <span v-if="mostrarPais"        class="col-5">{{ p.pais }}</span>
-                <span v-if="mostrarPopulacao"   class="col-3">{{ p.populacao }}</span>
-                <span v-if="mostrarData"        class="col-2">{{ p.data }}</span>
-            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th v-if="!mostrarPosicao && !mostrarPais && !mostrarPopulacao && !mostrarData" colspan="4">
+                            <span class="text-danger mr-3">&larr;</span> Selecione o que deseja ver!
+                        </th>
+                        <th v-if="mostrarPosicao"   @click="ordenarPosicao"     class="on-cursor" scope="col">Posição</th>
+                        <th v-if="mostrarPais"      @click="ordenarPais"        class="on-cursor" scope="col">País</th>
+                        <th v-if="mostrarPopulacao" @click="ordenarPopulacao"   class="on-cursor" scope="col">População</th>
+                        <th v-if="mostrarData"      @click="ordenarData"        class="on-cursor" scope="col">Data</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="p in populacao">
+                        <td v-if="mostrarPosicao">{{ p.posicao }}</td>
+                        <td v-if="mostrarPais">{{ p.pais }}</td>
+                        <td v-if="mostrarPopulacao">{{ p.populacao }}</td>
+                        <td v-if="mostrarData">{{ p.data }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
-
-    <small class="text-center text-light d-block ">
-        Simples aplicação usando Vue.js para controlar a árvore DOM do HTML, o JQUERY para ajudar na ordenação da listagem, o BOOTSTRAP para a estilização do HTML.
-    </small>
     
     <!-- Chamadas - JQUERY | POPPER | BOOTSTRAP -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" i></script>
