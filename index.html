@@ -64,6 +64,14 @@
                         <td v-if="mostrarData">{{ p.data }}</td>
                     </tr>
                 </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right pr-1">
+                            <button class="btn btn-sm btn-success" @click="addPais">Adicionar País</button>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </main>

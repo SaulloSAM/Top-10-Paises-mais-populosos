@@ -44,6 +44,10 @@ const app = new Vue({
             if (id == "pais") { this.mostrarPais = !this.mostrarPais }
             if (id == "populacao") { this.mostrarPopulacao = !this.mostrarPopulacao }
             if (id == "data") { this.mostrarData = !this.mostrarData }
+        },
+        addPais () {
+            let data = new Date;
+            this.populacao.push({"pais": "Novo", "populacao": 0, "posicao": 0, "data": data.getUTCFullYear()});
         }
     }
 });
